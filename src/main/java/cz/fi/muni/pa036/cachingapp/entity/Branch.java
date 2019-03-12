@@ -1,27 +1,26 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "branchtbl")
-public class Branch {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Branch extends PersistentObject {
 
     private String name;
 
     private String street;
 
-    private int street_number;
+    private Integer streetNumber;
 
     private String city;
 
     private String state;
+
+    private List<User> employees;
+
+    private List<InventoryItem> items;
+
+    private List<InventoryRevision> revisions;
 
 
     public Branch () {}
@@ -31,14 +30,16 @@ public class Branch {
     }
 
 
-    public Long getId() {
-        return id;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
+    public List<User> getEmployees() {
+        return employees;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmployees(List<User> employees) {
+        this.employees = employees;
     }
 
+    @Column
     public String getName() {
         return name;
     }
@@ -47,6 +48,7 @@ public class Branch {
         this.name = name;
     }
 
+    @Column
     public String getStreet() {
         return street;
     }
@@ -55,14 +57,16 @@ public class Branch {
         this.street = street;
     }
 
-    public int getStreet_number() {
-        return street_number;
+    @Column
+    public Integer getStreetNumber() {
+        return streetNumber;
     }
 
-    public void setStreet_number(int street_number) {
-        this.street_number = street_number;
+    public void setStreetNumber(Integer streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
+    @Column
     public String getCity() {
         return city;
     }
@@ -71,11 +75,30 @@ public class Branch {
         this.city = city;
     }
 
+    @Column
     public String getState() {
         return state;
     }
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
+    public List<InventoryItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<InventoryItem> items) {
+        this.items = items;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
+    public List<InventoryRevision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<InventoryRevision> revisions) {
+        this.revisions = revisions;
     }
 }
