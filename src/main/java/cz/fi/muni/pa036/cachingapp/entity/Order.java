@@ -24,6 +24,8 @@ public class Order {
 
     //private User user;
 
+    private Branch branch;
+
     public Order () {}
 
     public Order (String name) {
