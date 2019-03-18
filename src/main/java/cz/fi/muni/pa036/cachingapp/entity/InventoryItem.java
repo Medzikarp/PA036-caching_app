@@ -12,11 +12,13 @@ import java.util.List;
 @Table (name="inventory_item")
 public class InventoryItem extends PersistentObject {
 
+    @Column
     private String name;
 
     @Column(nullable = false, name = "is_material")
     private boolean isMaterial;
 
+    @Column
     private Integer quantity;
 
     @Column(name = "date_from")
@@ -25,8 +27,10 @@ public class InventoryItem extends PersistentObject {
     @Column(name = "date_to")
     private LocalDate dateTo;
 
+    @Column (nullable = false)
     private boolean scrapped;
 
+    @Column
     private String note;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -54,7 +58,6 @@ public class InventoryItem extends PersistentObject {
         isMaterial = material;
     }
 
-    @Column
     public Integer getQuantity() {
         return quantity;
     }
@@ -79,7 +82,6 @@ public class InventoryItem extends PersistentObject {
         this.dateTo = dateTo;
     }
 
-    @Column(nullable = false)
     public boolean isScrapped() {
         return scrapped;
     }
@@ -88,7 +90,6 @@ public class InventoryItem extends PersistentObject {
         this.scrapped = scrapped;
     }
 
-    @Column
     public String getNote() {
         return note;
     }

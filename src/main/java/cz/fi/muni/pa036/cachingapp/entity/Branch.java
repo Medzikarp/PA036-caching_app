@@ -6,15 +6,19 @@ import java.util.List;
 @Entity
 public class Branch extends PersistentObject {
 
+    @Column
     private String name;
 
+    @Column
     private String street;
 
     @Column(name = "street_number")
     private Integer streetNumber;
 
+    @Column
     private String city;
 
+    @Column
     private String state;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
@@ -43,7 +47,7 @@ public class Branch extends PersistentObject {
         this.employees = employees;
     }
 
-    @Column
+
     public String getName() {
         return name;
     }
@@ -52,7 +56,6 @@ public class Branch extends PersistentObject {
         this.name = name;
     }
 
-    @Column
     public String getStreet() {
         return street;
     }
@@ -69,7 +72,6 @@ public class Branch extends PersistentObject {
         this.streetNumber = streetNumber;
     }
 
-    @Column
     public String getCity() {
         return city;
     }
@@ -78,7 +80,6 @@ public class Branch extends PersistentObject {
         this.city = city;
     }
 
-    @Column
     public String getState() {
         return state;
     }

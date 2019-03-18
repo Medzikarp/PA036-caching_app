@@ -9,13 +9,16 @@ import javax.persistence.*;
 @Table (name="users")
 public class User extends PersistentObject {
 
+    @Column
     private String name;
 
+    @Column
     private String surname;
 
     @Column (name = "birth_number")
     private String birthNumber;
 
+    @Column(nullable = false)
     private boolean active;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -23,7 +26,6 @@ public class User extends PersistentObject {
     private Branch branch;
 
 
-    @Column
     public String getName() {
         return name;
     }
@@ -32,7 +34,7 @@ public class User extends PersistentObject {
         this.name = name;
     }
 
-    @Column
+
     public String getSurname() {
         return surname;
     }
@@ -50,7 +52,7 @@ public class User extends PersistentObject {
         this.birthNumber = birthNumber;
     }
 
-    @Column(nullable = false)
+
     public boolean isActive() {
         return active;
     }
