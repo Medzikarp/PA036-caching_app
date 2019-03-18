@@ -10,6 +10,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate_statistics: true
     hibernate:
       globally_quoted_identifiers: true
       ddl-auto: validate
