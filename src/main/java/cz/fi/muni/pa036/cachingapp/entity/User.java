@@ -6,6 +6,7 @@ import javax.persistence.*;
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @Entity
+@Table (name="users")
 public class User extends PersistentObject {
 
     private String name;

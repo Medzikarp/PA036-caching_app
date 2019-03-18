@@ -8,6 +8,7 @@ import java.util.List;
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @Entity
+@Table (name="inventory_item")
 public class InventoryItem extends PersistentObject {
 
     private String name;

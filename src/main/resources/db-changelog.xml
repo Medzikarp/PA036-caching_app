@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+    <changeSet id="1" author="Dusan Litvik">
+
+
+        <createTable tableName="branch">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="streetNumber" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="users">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birthNumber" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="branch" type="bigint">
+            </column>
+        </createTable>
+
+        <createTable tableName="inventory_item">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="isMaterial" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+            </column>
+            <column name="name" type="varchar(50)">
+            <constraints nullable="false"/>
+            </column>
+            <column name="dateFrom" type="datetime">
+            </column>
+            <column name="dateTo" type="datetime">
+            </column>
+            <column name="scrapped" type="boolean">
+            </column>
+            <column name="note" type="varchar(255)">
+            </column>
+            <column name="branch" type="bigint">
+
+            </column>
+        </createTable>
+
+        <createTable tableName="inventory_item">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="isMaterial" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dateFrom" type="datetime">
+            </column>
+            <column name="dateTo" type="datetime">
+            </column>
+            <column name="scrapped" type="boolean">
+            </column>
+            <column name="note" type="varchar(255)">
+            </column>
+            <column name="branch" type="bigint">
+
+            </column>
+        </createTable>
+
+
+        <addForeignKeyConstraint baseTableName="users" baseColumnNames="branch" constraintName="FK_users_branch" referencedTableName="branch"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="inventory_item" baseColumnNames="branch" constraintName="FK_inventory_item_branch" referencedTableName="branch"
+                                 referencedColumnNames="id"/>
+
+
+        <loadData tableName="branch" file="default_data/branch_data.csv">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="street" type="string"/>
+            <column name="streetNumber" type="numeric"/>
+            <column name="city" type="string"/>
+            <column name="state" type="string"/>
+        </loadData>
+
+        <loadData tableName="users" file="default_data/user_data.csv">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="surname" type="string"/>
+            <column name="birthNumber" type="string"/>
+            <column name="active" type="boolean"/>
+            <column name="branch" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="inventory_item" file="default_data/inventoryItem_data.csv">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="isMaterial" type="boolean"/>
+            <column name="quantity" type="numeric"/>
+            <column name="dateFrom" type="date"/>
+            <column name="dateTo" type="date"/>
+            <column name="scrapped" type="boolean"/>
+            <column name="note" type="string"/>
+            <column name="branch" type="numeric"/>
+
+        </loadData>
+
+
+    </changeSet>
+
+
+</databaseChangeLog>
