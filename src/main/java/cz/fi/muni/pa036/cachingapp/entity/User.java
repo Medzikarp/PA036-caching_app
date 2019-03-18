@@ -13,10 +13,13 @@ public class User extends PersistentObject {
 
     private String surname;
 
+    @Column (name = "birth_number")
     private String birthNumber;
 
     private boolean active;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
     private Branch branch;
 
 
@@ -38,7 +41,7 @@ public class User extends PersistentObject {
         this.surname = surname;
     }
 
-    @Column
+
     public String getBirthNumber() {
         return birthNumber;
     }
@@ -56,8 +59,7 @@ public class User extends PersistentObject {
         this.active = active;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_id")
+
     public Branch getBranch() {
         return branch;
     }

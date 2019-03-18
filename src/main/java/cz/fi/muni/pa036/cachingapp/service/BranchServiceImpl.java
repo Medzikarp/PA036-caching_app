@@ -35,8 +35,9 @@ public class BranchServiceImpl implements BranchService {
         }
     }
 
-    public Branch findRandomBranch(){
+   /* public Branch findRandomBranch(){
         return branchRepository.getRandomBranch();
     }
+    */
 
 }

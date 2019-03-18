@@ -6,15 +6,22 @@ import javax.persistence.*;
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @Entity
+@Table (name="revision_issue")
 public class RevisionIssue extends PersistentObject {
 
+    @Column (name = "issue_description")
     private String issueDescription;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventory_item")
     private InventoryItem item;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventory_revision")
     private InventoryRevision revision;
 
-    @Column
+
     public String getIssueDescription() {
         return issueDescription;
     }
@@ -23,8 +30,7 @@ public class RevisionIssue extends PersistentObject {
         this.issueDescription = issueDescription;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_item_id")
+
     public InventoryItem getItem() {
         return item;
     }
@@ -33,8 +39,7 @@ public class RevisionIssue extends PersistentObject {
         this.item = item;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "inventory_revision_id")
+
     public InventoryRevision getRevision() {
         return revision;
     }

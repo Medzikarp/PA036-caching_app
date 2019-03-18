@@ -2,6 +2,7 @@ package cz.fi.muni.pa036.cachingapp.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -13,20 +14,26 @@ public class InventoryItem extends PersistentObject {
 
     private String name;
 
+    @Column(nullable = false, name = "is_material")
     private boolean isMaterial;
 
     private Integer quantity;
 
-    private Date dateFrom;
+    @Column(name = "date_from")
+    private LocalDate dateFrom;
 
-    private Date dateTo;
+    @Column(name = "date_to")
+    private LocalDate dateTo;
 
     private boolean scrapped;
 
     private String note;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
     private Branch branch;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<RevisionIssue> revisionIssues;
 
     @Column
@@ -38,7 +45,7 @@ public class InventoryItem extends PersistentObject {
         this.name = name;
     }
 
-    @Column(nullable = false)
+
     public boolean isMaterial() {
         return isMaterial;
     }
@@ -56,21 +63,19 @@ public class InventoryItem extends PersistentObject {
         this.quantity = quantity;
     }
 
-    @Column
-    public Date getDateFrom() {
+    public LocalDate getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    @Column
-    public Date getDateTo() {
+    public LocalDate getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(LocalDate dateTo) {
         this.dateTo = dateTo;
     }
 
@@ -92,8 +97,7 @@ public class InventoryItem extends PersistentObject {
         this.note = note;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_id")
+
     public Branch getBranch() {
         return branch;
     }
@@ -102,7 +106,6 @@ public class InventoryItem extends PersistentObject {
         this.branch = branch;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "item")
     public List<RevisionIssue> getRevisionIssues() {
         return revisionIssues;
     }

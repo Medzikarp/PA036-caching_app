@@ -19,7 +19,7 @@
             <column name="street" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="streetNumber" type="int">
+            <column name="street_number" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="city" type="varchar(50)">
@@ -40,7 +40,7 @@
             <column name="surname" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="birthNumber" type="varchar(50)">
+            <column name="birth_number" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
             <column name="active" type="boolean">
@@ -54,7 +54,7 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="isMaterial" type="boolean">
+            <column name="is_material" type="boolean">
                 <constraints nullable="false"/>
             </column>
             <column name="quantity" type="int">
@@ -62,9 +62,9 @@
             <column name="name" type="varchar(50)">
             <constraints nullable="false"/>
             </column>
-            <column name="dateFrom" type="datetime">
+            <column name="date_from" type="date">
             </column>
-            <column name="dateTo" type="datetime">
+            <column name="date_to" type="date">
             </column>
             <column name="scrapped" type="boolean">
             </column>
@@ -75,28 +75,33 @@
             </column>
         </createTable>
 
-        <createTable tableName="inventory_item">
+        <createTable tableName="inventory_revision">
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="isMaterial" type="boolean">
+            <column name="revision_date" type="date">
                 <constraints nullable="false"/>
             </column>
-            <column name="quantity" type="int">
-            </column>
-            <column name="name" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="dateFrom" type="datetime">
-            </column>
-            <column name="dateTo" type="datetime">
-            </column>
-            <column name="scrapped" type="boolean">
-            </column>
-            <column name="note" type="varchar(255)">
+            <column name="result" type="varchar(500)">
             </column>
             <column name="branch" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="bigint">
+            </column>
+        </createTable>
 
+        <createTable tableName="revision_issue">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="issue_description" type="varchar(500)">
+            </column>
+            <column name="inventory_item" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="inventory_revision" type="bigint">
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
@@ -105,13 +110,22 @@
                                  referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="inventory_item" baseColumnNames="branch" constraintName="FK_inventory_item_branch" referencedTableName="branch"
                                  referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="inventory_revision" baseColumnNames="author" constraintName="FK_rev_user" referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="inventory_revision" baseColumnNames="branch" constraintName="FK_rev_branch" referencedTableName="branch"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="revision_issue" baseColumnNames="inventory_item" constraintName="FK_issue_item" referencedTableName="inventory_item"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="revision_issue" baseColumnNames="inventory_revision" constraintName="FK_issue_rev" referencedTableName="inventory_revision"
+                                 referencedColumnNames="id"/>
+
 
 
         <loadData tableName="branch" file="default_data/branch_data.csv">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="street" type="string"/>
-            <column name="streetNumber" type="numeric"/>
+            <column name="street_number" type="numeric"/>
             <column name="city" type="string"/>
             <column name="state" type="string"/>
         </loadData>
@@ -120,7 +134,7 @@
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="surname" type="string"/>
-            <column name="birthNumber" type="string"/>
+            <column name="birth_number" type="string"/>
             <column name="active" type="boolean"/>
             <column name="branch" type="numeric"/>
         </loadData>
@@ -128,15 +142,17 @@
         <loadData tableName="inventory_item" file="default_data/inventoryItem_data.csv">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
-            <column name="isMaterial" type="boolean"/>
+            <column name="is_material" type="boolean"/>
             <column name="quantity" type="numeric"/>
-            <column name="dateFrom" type="date"/>
-            <column name="dateTo" type="date"/>
+            <column name="date_from" type="date"/>
+            <column name="date_to" type="date"/>
             <column name="scrapped" type="boolean"/>
             <column name="note" type="string"/>
             <column name="branch" type="numeric"/>
 
         </loadData>
+
+        <createSequence sequenceName="hibernate_sequence"/>
 
 
     </changeSet>

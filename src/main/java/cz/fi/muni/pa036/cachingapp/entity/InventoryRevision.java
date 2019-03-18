@@ -2,34 +2,43 @@ package cz.fi.muni.pa036.cachingapp.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @Entity
+@Table (name="inventory_revision")
 public class InventoryRevision extends PersistentObject {
 
-    private Date revisionDate;
-
-    private String result;
-
-    private Branch branch;
-
-    private User author;
-
-    private List<RevisionIssue> issues;
+    @Column (name="revision_date")
+    private LocalDate revisionDate;
 
     @Column
-    public Date getRevisionDate() {
+    private String result;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch")
+    private Branch branch;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author")
+    private User author;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "revision")
+    private List<RevisionIssue> issues;
+
+
+    public LocalDate getRevisionDate() {
         return revisionDate;
     }
 
-    public void setRevisionDate(Date revisionDate) {
+    public void setRevisionDate(LocalDate revisionDate) {
         this.revisionDate = revisionDate;
     }
 
-    @Column
+
     public String getResult() {
         return result;
     }
@@ -38,8 +47,7 @@ public class InventoryRevision extends PersistentObject {
         this.result = result;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "branch_id")
+
     public Branch getBranch() {
         return branch;
     }
@@ -48,8 +56,7 @@ public class InventoryRevision extends PersistentObject {
         this.branch = branch;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
+
     public User getAuthor() {
         return author;
     }
@@ -58,7 +65,7 @@ public class InventoryRevision extends PersistentObject {
         this.author = author;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "revision")
+
     public List<RevisionIssue> getIssues() {
         return issues;
     }

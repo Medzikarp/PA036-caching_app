@@ -1,4 +1,4 @@
-﻿ID,name,surname,birthNumber,active,Branch
+﻿ID,name,surname,birth_number,active,Branch
 1,Charlize,Vaughn,483-888-742,TRUE,6067
 2,Grace,Reynolds,827-223-112,TRUE,3432
 3,Melanie,Greenwood,132-723-140,FALSE,4398

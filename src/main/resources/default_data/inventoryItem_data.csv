@@ -1,4 +1,4 @@
-﻿ID,name,quantity,dateFrom,dateTo,scrapped,isMaterial,note,Branch
+﻿ID,name,quantity,date_from,date_to,scrapped,is_material,note,Branch
 1,hV3ST6921uRyxsy,283,"Sunday, August 1, 2004","Sunday, July 1, 2007",TRUE,TRUE,,3088
 2,pFaetxT2rWlP6tJ,131,"Monday, July 28, 2003","Friday, November 5, 2010",TRUE,TRUE,,4841
 3,ufvO7qwlLo1jYI6,290,"Wednesday, October 19, 2005","Monday, August 10, 2015",TRUE,TRUE,,4929

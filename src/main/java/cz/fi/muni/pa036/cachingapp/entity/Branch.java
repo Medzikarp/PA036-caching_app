@@ -10,16 +10,20 @@ public class Branch extends PersistentObject {
 
     private String street;
 
+    @Column(name = "street_number")
     private Integer streetNumber;
 
     private String city;
 
     private String state;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<User> employees;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<InventoryItem> items;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<InventoryRevision> revisions;
 
 
@@ -30,7 +34,7 @@ public class Branch extends PersistentObject {
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
+
     public List<User> getEmployees() {
         return employees;
     }
@@ -57,7 +61,6 @@ public class Branch extends PersistentObject {
         this.street = street;
     }
 
-    @Column
     public Integer getStreetNumber() {
         return streetNumber;
     }
@@ -84,7 +87,6 @@ public class Branch extends PersistentObject {
         this.state = state;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     public List<InventoryItem> getItems() {
         return items;
     }
@@ -93,7 +95,6 @@ public class Branch extends PersistentObject {
         this.items = items;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     public List<InventoryRevision> getRevisions() {
         return revisions;
     }
