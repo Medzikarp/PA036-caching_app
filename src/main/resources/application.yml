@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/testDB
+    username: postgres
+    password: 977855
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      globally_quoted_identifiers: true
+      ddl-auto: validate
+  liquibase:
+    change-log: classpath:/db-changelog.xml
+    drop-first: true
+    contexts: test
+# Application port
+server:
+  port: 8090
+# Logger level
+log4j:
+  logger:
+    org.hibernate.SQL: debug
+
+
+
+
