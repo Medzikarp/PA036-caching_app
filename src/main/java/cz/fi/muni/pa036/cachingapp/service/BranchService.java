@@ -4,7 +4,7 @@ import cz.fi.muni.pa036.cachingapp.entity.Branch;
 
 public interface BranchService {
 
-    void createBranch();
+    void createBranch(Branch branch);
 
     //Branch findRandomBranch();
 
