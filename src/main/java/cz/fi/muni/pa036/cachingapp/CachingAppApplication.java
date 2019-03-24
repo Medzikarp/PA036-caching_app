@@ -2,6 +2,8 @@ package cz.fi.muni.pa036.cachingapp;
 
 import cz.fi.muni.pa036.cachingapp.entity.Branch;
 import cz.fi.muni.pa036.cachingapp.entity.User;
+import cz.fi.muni.pa036.cachingapp.service.BranchService;
+import cz.fi.muni.pa036.cachingapp.service.BranchServiceImpl;
 import cz.fi.muni.pa036.cachingapp.service.UserService;
 import cz.fi.muni.pa036.cachingapp.service.UserServiceImpl;
 import org.slf4j.Logger;
@@ -26,5 +28,10 @@ public class CachingAppApplication {
 		logger.info("The first record: " + firstResult.toString() + " with name: " + firstResult.getName() + " " + firstResult.getSurname());
 		Branch usersBranch = firstResult.getBranch();
 		logger.info("His branch:" + usersBranch.toString() + " with name: " + usersBranch.getName() + " in the city: " + usersBranch.getCity());
+
+		BranchService branchService = applicationContext.getBean(BranchServiceImpl.class);
+		List<Branch> branches = branchService.listAllBranches();
+
+
 	}
 }
