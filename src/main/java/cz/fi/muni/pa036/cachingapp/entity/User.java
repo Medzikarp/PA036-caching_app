@@ -21,7 +21,7 @@ public class User extends PersistentObject {
     @Column(nullable = false)
     private boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "branch")
     private Branch branch;
 

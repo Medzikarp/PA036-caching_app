@@ -22,4 +22,8 @@ public class PersistentObject {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String toString() {
+        return this.getClass().getSimpleName() + "-" + getId();
+    }
 }
