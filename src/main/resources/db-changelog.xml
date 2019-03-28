@@ -79,15 +79,15 @@
             <column name="id" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="revision_date" type="date">
-                <constraints nullable="false"/>
-            </column>
             <column name="result" type="varchar(500)">
+            </column>
+            <column name="revision_date" type="date">
             </column>
             <column name="branch" type="bigint">
                 <constraints nullable="false"/>
             </column>
             <column name="author" type="bigint">
+                <constraints nullable="false"/>
             </column>
         </createTable>
 
@@ -98,7 +98,6 @@
             <column name="issue_description" type="varchar(500)">
             </column>
             <column name="inventory_item" type="bigint">
-                <constraints nullable="false"/>
             </column>
             <column name="inventory_revision" type="bigint">
                 <constraints nullable="false"/>
@@ -150,6 +149,21 @@
             <column name="note" type="string"/>
             <column name="branch" type="numeric"/>
 
+        </loadData>
+
+        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="revision_date" type="date"/>
+            <column name="branch" type="numeric"/>
+            <column name="author" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="revision_issue" file="default_data/revisionIssue_data.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="inventory_item" type="numeric"/>
+            <column name="inventory_revision" type="numeric"/>
         </loadData>
 
         <createSequence sequenceName="hibernate_sequence"/>
