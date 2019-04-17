@@ -1,6 +1,10 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Marek Perichta <mperichta@cesnet.cz>
@@ -21,10 +25,23 @@ public class User extends PersistentObject {
     @Column(nullable = false)
     private boolean active;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "branch")
     private Branch branch;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "author")
+    private List<InventoryRevision> revisions;
+
+
+    public List<InventoryRevision> getRevisions() {
+        return revisions;
+    }
+
+    public void setRevisions(List<InventoryRevision> revisions) {
+        this.revisions = revisions;
+    }
 
     public String getName() {
         return name;

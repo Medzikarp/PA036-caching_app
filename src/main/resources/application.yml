@@ -1,31 +1,29 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/caching_db
-    username: # DB user username here
-    password: # DB user password here
+    username: shongo
+    password: shongo
     driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db-changelog.xml
+    drop-first: true
+    contexts: test
   jpa:
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        generate_statistics: true
+        #generate_statistics: true
     hibernate:
       globally_quoted_identifiers: true
       ddl-auto: validate
-  liquibase:
-    change-log: classpath:/db-changelog.xml
-    drop-first: true
-    contexts: test
+
 # Application port
 server:
   port: 8090
-# Logger level
-log4j:
-  logger:
-    org.hibernate.SQL: debug
 
 
-
-
+# Logging
+logging:
+  file: logs/log.log

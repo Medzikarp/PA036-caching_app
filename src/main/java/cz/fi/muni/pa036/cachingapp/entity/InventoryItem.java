@@ -1,5 +1,8 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -33,10 +36,12 @@ public class InventoryItem extends PersistentObject {
     @Column
     private String note;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "branch")
     private Branch branch;
 
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<RevisionIssue> revisionIssues;
 

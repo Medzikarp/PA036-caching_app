@@ -1,0 +1,37 @@
+
+
+
+<configuration>
+    <appender name="InventoryServiceFILE" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <file>logs/InventoryService.log</file>
+    </appender>
+
+
+    <appender name="BranchServiceFILE" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <file>logs/BranchService.log</file>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="cz.fi.muni.pa036.cachingapp.service.InventoryServiceImpl">
+        <appender-ref ref="InventoryServiceFILE" />
+    </logger>
+
+    <logger name="cz.fi.muni.pa036.cachingapp.service.BranchServiceImpl">
+        <appender-ref ref="BranchServiceFILE" />
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

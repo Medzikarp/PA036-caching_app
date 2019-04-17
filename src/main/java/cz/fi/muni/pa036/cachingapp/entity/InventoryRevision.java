@@ -1,5 +1,8 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -18,15 +21,18 @@ public class InventoryRevision extends PersistentObject {
     @Column
     private String result;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "branch")
     private Branch branch;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author")
     private User author;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "revision")
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "revision")
     private List<RevisionIssue> issues;
 
 
@@ -72,5 +78,16 @@ public class InventoryRevision extends PersistentObject {
 
     public void setIssues(List<RevisionIssue> issues) {
         this.issues = issues;
+    }
+
+    @Override
+    public String toString() {
+        return "InventoryRevision{" +
+                "revisionDate=" + revisionDate +
+                ", result='" + result + '\'' +
+                ", branch=" + branch +
+                ", author=" + author +
+                ", issues=" + issues +
+                '}';
     }
 }

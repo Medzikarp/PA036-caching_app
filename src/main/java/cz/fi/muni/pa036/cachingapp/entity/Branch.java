@@ -1,5 +1,7 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
@@ -22,12 +24,15 @@ public class Branch extends PersistentObject {
     @Column
     private String state;
 
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<User> employees;
 
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<InventoryItem> items;
 
+    @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "branch")
     private List<InventoryRevision> revisions;
 
