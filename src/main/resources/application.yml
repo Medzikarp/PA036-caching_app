@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/testDB
-    username: postgres
-    password: 977855
+    url: jdbc:postgresql://localhost:5432/caching_db
+    username: # DB user username here
+    password: # DB user password here
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
@@ -10,6 +10,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        generate_statistics: true
     hibernate:
       globally_quoted_identifiers: true
       ddl-auto: validate

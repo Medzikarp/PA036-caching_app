@@ -6,9 +6,10 @@ import java.util.List;
 
 public interface BranchService {
 
-    void createBranch();
+    void createBranch(Branch branch);
 
-    List<Branch> findAll();
+    List<Branch> listAllBranches();
+
     //Branch findRandomBranch();
 
 }

@@ -23,4 +23,7 @@ public abstract class PersistentObject {
         this.id = id;
     }
 
+    public String toString() {
+        return this.getClass().getSimpleName() + "-" + getId();
+    }
 }

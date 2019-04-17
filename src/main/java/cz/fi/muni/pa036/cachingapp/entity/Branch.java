@@ -1,6 +1,7 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -40,7 +41,7 @@ public class Branch extends PersistentObject {
 
 
     public List<User> getEmployees() {
-        return employees;
+        return Collections.unmodifiableList(employees);
     }
 
     public void setEmployees(List<User> employees) {

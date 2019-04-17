@@ -19,14 +19,9 @@ public class BranchController {
     @Autowired
     BranchService branchService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public void createBranch() {
-        branchService.createBranch();
-
-    }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<Branch> listBranches() {
-        return branchService.findAll();
+        return branchService.listAllBranches();
     }
 }
