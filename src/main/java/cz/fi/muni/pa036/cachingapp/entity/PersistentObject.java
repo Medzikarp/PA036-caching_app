@@ -8,11 +8,11 @@ import javax.persistence.MappedSuperclass;
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @MappedSuperclass
-public class PersistentObject {
+public abstract class PersistentObject {
+
     @Id
     @GeneratedValue
     protected Long id;
-
 
     public Long getId()
     {
@@ -22,4 +22,5 @@ public class PersistentObject {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
