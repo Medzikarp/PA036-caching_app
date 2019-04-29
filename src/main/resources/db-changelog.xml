@@ -138,7 +138,7 @@
             <column name="branch" type="numeric"/>
         </loadData>
 
-        <loadData tableName="inventory_item" file="default_data/inventoryItem_data.csv">
+        <loadData tableName="inventory_item" file="default_data/inventoryItem_data_part1.csv">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="is_material" type="boolean"/>
@@ -151,7 +151,33 @@
 
         </loadData>
 
-        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data.csv">
+        <loadData tableName="inventory_item" file="default_data/inventoryItem_data_part2.csv">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="is_material" type="boolean"/>
+            <column name="quantity" type="numeric"/>
+            <column name="date_from" type="date"/>
+            <column name="date_to" type="date"/>
+            <column name="scrapped" type="boolean"/>
+            <column name="note" type="string"/>
+            <column name="branch" type="numeric"/>
+
+        </loadData>
+
+        <loadData tableName="inventory_item" file="default_data/inventoryItem_data_part3.csv">
+            <column name="id" type="numeric"/>
+            <column name="name" type="string"/>
+            <column name="is_material" type="boolean"/>
+            <column name="quantity" type="numeric"/>
+            <column name="date_from" type="date"/>
+            <column name="date_to" type="date"/>
+            <column name="scrapped" type="boolean"/>
+            <column name="note" type="string"/>
+            <column name="branch" type="numeric"/>
+
+        </loadData>
+
+        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data_part1.csv">
             <column name="id" type="numeric"/>
             <column name="result" type="string"/>
             <column name="revision_date" type="date"/>
@@ -159,12 +185,52 @@
             <column name="author" type="numeric"/>
         </loadData>
 
-        <loadData tableName="revision_issue" file="default_data/revisionIssue_data.csv">
+        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data_part2.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="revision_date" type="date"/>
+            <column name="branch" type="numeric"/>
+            <column name="author" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data_part3.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="revision_date" type="date"/>
+            <column name="branch" type="numeric"/>
+            <column name="author" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="inventory_revision" file="default_data/inventoryRevision_data_part4.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="revision_date" type="date"/>
+            <column name="branch" type="numeric"/>
+            <column name="author" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="revision_issue" file="default_data/revisionIssue_data_part1.csv">
             <column name="id" type="numeric"/>
             <column name="result" type="string"/>
             <column name="inventory_item" type="numeric"/>
             <column name="inventory_revision" type="numeric"/>
         </loadData>
+
+        <loadData tableName="revision_issue" file="default_data/revisionIssue_data_part2.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="inventory_item" type="numeric"/>
+            <column name="inventory_revision" type="numeric"/>
+        </loadData>
+
+        <loadData tableName="revision_issue" file="default_data/revisionIssue_data_part3.csv">
+            <column name="id" type="numeric"/>
+            <column name="result" type="string"/>
+            <column name="inventory_item" type="numeric"/>
+            <column name="inventory_revision" type="numeric"/>
+        </loadData>
+
+
 
         <createSequence sequenceName="hibernate_sequence"/>
 
