@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dusan
+    username: dusan
+    password: dusan
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db-changelog.xml
+    drop-first: false
+    contexts: test
+  jpa:
+    properties:
+      'hibernate.javax.cache.provider': org.ehcache.jsr107.EhcacheCachingProvider
+      'hibernate.cache.use_second_level_cache': true
+      'hibernate.cache.region.factory_class': org.hibernate.cache.jcache.JCacheRegionFactory
+      'hibernate.generate_statistics': true
+      'hibernate.javax.cache.uri': classpath:/ehcache.xml
+      'hibernate.cache.use_query_cache': true
+
+
+    hibernate:
+      globally_quoted_identifiers: true
+      ddl-auto: validate
+
+# Application port
+server:
+  port: 8090
+
+
+# Logging
+logging:
+  file: logs/log.log
+  level:
+    'com.zaxxer': debug
+    'org.ehcache': trace
+    'org.hibernate.SQL': trace
+    'org.hibernate.cache': trace
