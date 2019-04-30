@@ -1,14 +1,14 @@
 package cz.fi.muni.pa036.cachingapp.controllers;
 
-import cz.fi.muni.pa036.cachingapp.entity.Branch;
+import cz.fi.muni.pa036.cachingapp.dto.BranchDTO;
 import cz.fi.muni.pa036.cachingapp.entity.InventoryItem;
 import cz.fi.muni.pa036.cachingapp.entity.InventoryRevision;
 import cz.fi.muni.pa036.cachingapp.service.BranchService;
 import cz.fi.muni.pa036.cachingapp.service.InventoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,16 +21,19 @@ import java.util.List;
 @RestController
 public class MainController {
 
-    @Autowired
-    BranchService branchService;
+    private final BranchService branchService;
+    private final InventoryService inventoryService;
 
-    @Autowired
-    InventoryService inventoryService;
+    public MainController(BranchService branchService,
+        InventoryService inventoryService) {
+        this.branchService = branchService;
+        this.inventoryService = inventoryService;
+    }
 
     /**
      * Using like http://localhost:8090/revisions/problematic
      */
-    @RequestMapping(value = "/revisions/problematic", method = RequestMethod.GET)
+    @GetMapping("/revisions/problematic")
     public List<InventoryRevision> listProblematicRevisions() {
         List<InventoryRevision> revisions = inventoryService.listProblematicRevisions(4);
         return revisions;
@@ -40,7 +43,7 @@ public class MainController {
     /**
      * Using like http://localhost:8090/items/between?from=2015-08-24@to=2016-07-14
      */
-    @RequestMapping(value = "/items/between", method = RequestMethod.GET)
+    @GetMapping("/items/between")
     public List<InventoryItem> listInventoryItemsBetween(
             @RequestParam("from") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateFrom,
             @RequestParam("to") @DateTimeFormat(pattern="yyyy-MM-dd") LocalDate dateTo) {
@@ -51,15 +54,16 @@ public class MainController {
     /**
      * Using like http://localhost:8090/branches/city?search=bra
      */
-    @RequestMapping(value = "/branches/city", method = RequestMethod.GET)
-    public List<Branch> listBranchesByCitiesLike(
-            @RequestParam("search") String search) {
-        List<Branch> branches = branchService.listBranchesByCitiesLike(search);
-        return branches;
+    @GetMapping("/branches/city")
+    public List<BranchDTO> listBranchesByCitiesLike(
+            @RequestParam("search") String search, @RequestParam Integer streetNumber) {
+        return branchService.listBranchesByCitiesLike(search, streetNumber);
     }
 
-
-
+    @GetMapping("/branches/{id}")
+    public ResponseEntity<BranchDTO> byId(@PathVariable Long id) {
+        return ResponseEntity.of(branchService.findById(id));
+    }
 }
 
 

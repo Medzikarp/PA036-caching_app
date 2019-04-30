@@ -1,10 +1,8 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -45,7 +43,6 @@ public class InventoryItem extends PersistentObject {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<RevisionIssue> revisionIssues;
 
-    @Column
     public String getName() {
         return name;
     }
@@ -53,7 +50,6 @@ public class InventoryItem extends PersistentObject {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public boolean isMaterial() {
         return isMaterial;
@@ -102,7 +98,6 @@ public class InventoryItem extends PersistentObject {
     public void setNote(String note) {
         this.note = note;
     }
-
 
     public Branch getBranch() {
         return branch;

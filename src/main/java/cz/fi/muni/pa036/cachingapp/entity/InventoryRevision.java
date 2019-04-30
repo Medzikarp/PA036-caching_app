@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -44,7 +43,6 @@ public class InventoryRevision extends PersistentObject {
         this.revisionDate = revisionDate;
     }
 
-
     public String getResult() {
         return result;
     }
@@ -52,7 +50,6 @@ public class InventoryRevision extends PersistentObject {
     public void setResult(String result) {
         this.result = result;
     }
-
 
     public Branch getBranch() {
         return branch;
@@ -62,7 +59,6 @@ public class InventoryRevision extends PersistentObject {
         this.branch = branch;
     }
 
-
     public User getAuthor() {
         return author;
     }
@@ -70,7 +66,6 @@ public class InventoryRevision extends PersistentObject {
     public void setAuthor(User author) {
         this.author = author;
     }
-
 
     public List<RevisionIssue> getIssues() {
         return issues;

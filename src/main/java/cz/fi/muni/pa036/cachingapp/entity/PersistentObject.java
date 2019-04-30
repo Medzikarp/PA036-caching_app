@@ -3,6 +3,7 @@ package cz.fi.muni.pa036.cachingapp.entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.util.Objects;
 
 /**
  * @author Marek Perichta <mperichta@cesnet.cz>
@@ -25,5 +26,18 @@ public abstract class PersistentObject {
 
     public String toString() {
         return this.getClass().getSimpleName() + "-" + getId();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersistentObject that = (PersistentObject) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

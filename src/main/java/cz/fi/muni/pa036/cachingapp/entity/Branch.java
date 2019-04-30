@@ -1,12 +1,18 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Branch extends PersistentObject {
 
     @Column
@@ -37,13 +43,12 @@ public class Branch extends PersistentObject {
     private List<InventoryRevision> revisions;
 
 
-    public Branch () {}
-
-    public Branch (String name) {
-        this.name = name;
+    public Branch() {
     }
 
-
+    public Branch(String name) {
+        this.name = name;
+    }
 
     public List<User> getEmployees() {
         return Collections.unmodifiableList(employees);
@@ -52,7 +57,6 @@ public class Branch extends PersistentObject {
     public void setEmployees(List<User> employees) {
         this.employees = employees;
     }
-
 
     public String getName() {
         return name;

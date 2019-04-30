@@ -51,7 +51,6 @@ public class User extends PersistentObject {
         this.name = name;
     }
 
-
     public String getSurname() {
         return surname;
     }
@@ -59,7 +58,6 @@ public class User extends PersistentObject {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-
 
     public String getBirthNumber() {
         return birthNumber;
@@ -69,7 +67,6 @@ public class User extends PersistentObject {
         this.birthNumber = birthNumber;
     }
 
-
     public boolean isActive() {
         return active;
     }
@@ -77,7 +74,6 @@ public class User extends PersistentObject {
     public void setActive(boolean active) {
         this.active = active;
     }
-
 
     public Branch getBranch() {
         return branch;

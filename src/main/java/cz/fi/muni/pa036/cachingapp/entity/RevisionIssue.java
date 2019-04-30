@@ -34,7 +34,6 @@ public class RevisionIssue extends PersistentObject {
         this.issueDescription = issueDescription;
     }
 
-
     public InventoryItem getItem() {
         return item;
     }
@@ -42,7 +41,6 @@ public class RevisionIssue extends PersistentObject {
     public void setItem(InventoryItem item) {
         this.item = item;
     }
-
 
     public InventoryRevision getRevision() {
         return revision;
