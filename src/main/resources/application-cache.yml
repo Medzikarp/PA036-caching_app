@@ -16,8 +16,7 @@ spring:
       'hibernate.generate_statistics': true
       'hibernate.javax.cache.uri': classpath:/ehcache.xml
       'hibernate.cache.use_query_cache': true
-
-
+      'hibernate.temp.use_jdbc_metadata_defaults': false
     hibernate:
       globally_quoted_identifiers: true
       ddl-auto: validate

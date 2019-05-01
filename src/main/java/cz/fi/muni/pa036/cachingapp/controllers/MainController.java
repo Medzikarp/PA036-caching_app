@@ -52,7 +52,7 @@ public class MainController {
     }
 
     /**
-     * Using like http://localhost:8090/branches/city?search=bra
+     * Using like http://localhost:8090/branches/city?search=Dallas&streetNumber=492
      */
     @GetMapping("/branches/city")
     public List<BranchDTO> listBranchesByCitiesLike(
