@@ -17,7 +17,7 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
     Branch getRandomBranch(Pageable pageable);
 */
     @QueryHints(@QueryHint(name = "org.hibernate.cacheable", value = "true"))
-    @Query("SELECT b FROM Branch b WHERE b.streetNumber = :streetNumber AND b.city = :city")
+    @Query("SELECT b FROM Branch b WHERE b.city = :city AND (:streetNumber IS NULL OR b.streetNumber = :streetNumber)")
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
     List<Branch> findCitiesByParams(Integer streetNumber, String city);
     
