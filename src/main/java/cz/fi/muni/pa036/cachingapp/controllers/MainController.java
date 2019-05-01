@@ -56,7 +56,7 @@ public class MainController {
      */
     @GetMapping("/branches/city")
     public List<BranchDTO> listBranchesByCitiesLike(
-            @RequestParam("search") String search, @RequestParam Integer streetNumber) {
+            @RequestParam("search") String search, @RequestParam(required = false) Integer streetNumber) {
         return branchService.listBranchesByCitiesLike(search, streetNumber);
     }
 
