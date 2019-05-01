@@ -41,7 +41,7 @@ public class MainController {
 
 
     /**
-     * Using like http://localhost:8090/items/between?from=2015-08-24@to=2016-07-14
+     * Using like http://localhost:8090/items/between?from=2015-08-24&to=2016-07-14
      */
     @GetMapping("/items/between")
     public List<InventoryItem> listInventoryItemsBetween(

@@ -15,7 +15,8 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
 
     /*@Query (value = "SELECT column FROM Branch ORDER BY RANDOM() LIMIT 1",nativeQuery = true)
     Branch getRandomBranch(Pageable pageable);
-*/
+    */
+
     @QueryHints(@QueryHint(name = "org.hibernate.cacheable", value = "true"))
     @Query("SELECT b FROM Branch b WHERE b.streetNumber = :streetNumber AND b.city = :city")
     @Cache(usage = CacheConcurrencyStrategy.READ_ONLY)

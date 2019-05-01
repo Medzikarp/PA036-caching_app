@@ -31,7 +31,7 @@ public class InventoryRevision extends PersistentObject {
     private User author;
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "revision")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "revision")
     private List<RevisionIssue> issues;
 
 
