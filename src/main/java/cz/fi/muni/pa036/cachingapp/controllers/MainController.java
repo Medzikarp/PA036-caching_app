@@ -31,11 +31,13 @@ public class MainController {
     }
 
     /**
-     * Using like http://localhost:8090/revisions/problematic
+     * Using like http://localhost:8090/revisions/problematic?minimumIssues=200
      */
     @GetMapping("/revisions/problematic")
-    public List<InventoryRevision> listProblematicRevisions() {
-        List<InventoryRevision> revisions = inventoryService.listProblematicRevisions(4);
+    public List<InventoryRevision> listProblematicRevisions(
+            @RequestParam("minimumIssues") Integer minimumIssues
+    ) {
+        List<InventoryRevision> revisions = inventoryService.listProblematicRevisions(minimumIssues);
         return revisions;
     }
 
