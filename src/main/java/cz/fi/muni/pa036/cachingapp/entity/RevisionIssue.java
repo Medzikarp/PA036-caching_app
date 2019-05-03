@@ -1,7 +1,7 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
@@ -15,7 +15,7 @@ public class RevisionIssue extends PersistentObject {
     @Column (name = "issue_description")
     private String issueDescription;
 
-    @JsonManagedReference
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inventory_item")
     private InventoryItem item;

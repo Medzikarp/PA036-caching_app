@@ -3,7 +3,6 @@ package cz.fi.muni.pa036.cachingapp.repository;
 import cz.fi.muni.pa036.cachingapp.entity.InventoryRevision;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,8 +12,7 @@ import java.util.List;
 public interface RevisionRepository extends JpaRepository<InventoryRevision, Long> {
 
     @Query("SELECT DISTINCT r FROM InventoryRevision r " +
-            "JOIN FETCH  r.issues issue " +
-            "JOIN FETCH issue.item item " +
+            "LEFT JOIN FETCH  r.issues issue " +
             "WHERE SIZE(r.issues) >= :minimumIssues")
     List<InventoryRevision> findAllWithNumberOfIssues(Integer minimumIssues);
 }
