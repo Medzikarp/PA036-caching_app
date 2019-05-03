@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 public class Branch extends PersistentObject {
 
     @Column

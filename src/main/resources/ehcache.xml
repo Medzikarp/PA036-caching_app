@@ -5,7 +5,16 @@
 							http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107-ext-3.0.xsd">
 
     <cache alias="cz.fi.muni.pa036.cachingapp.entity.Branch">
-        <heap unit="entries">20000</heap>
+        <heap unit="entries">10</heap>
         <jsr107:mbeans enable-statistics="true"/>
     </cache>
+
+
+    <cache alias="cz.fi.muni.pa036.cachingapp.entity.InventoryItem">
+        <heap unit="entries">2000</heap>
+        <jsr107:mbeans enable-statistics="true"/>
+    </cache>
+
+
+
 </config>

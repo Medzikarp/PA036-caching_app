@@ -1,6 +1,9 @@
 package cz.fi.muni.pa036.cachingapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +13,7 @@ import java.util.List;
  * @author Marek Perichta <mperichta@cesnet.cz>
  */
 @Entity
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table (name="inventory_item")
 public class InventoryItem extends PersistentObject {
 
